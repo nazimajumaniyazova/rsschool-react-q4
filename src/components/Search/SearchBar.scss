@@ -52,3 +52,18 @@
   border-radius: 0;
   background-position: 100% center;
 }
+
+.search-bar__btn {
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 12px 24px;
+  border: 1px solid #575756;
+  outline: none;
+  border-radius: 50px;
+  &:hover {
+    transform: scale((1.05));
+  }
+  &:active {
+    transform: scale((0.95));
+  }
+}

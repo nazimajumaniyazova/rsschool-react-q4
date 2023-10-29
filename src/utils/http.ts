@@ -1,6 +1,6 @@
 interface HttpResponse<T> extends Response {
   parsedBody?: T;
-  status: number
+  status: number;
 }
 
 export async function http<T>(url: string): Promise<HttpResponse<T>> {

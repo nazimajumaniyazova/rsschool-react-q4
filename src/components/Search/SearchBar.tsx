@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './SearchBar.scss';
 
 interface IProps {
-  smth?: string;
+  onSearch: (name: string) => void;
 }
 
 interface IState {
@@ -16,7 +16,6 @@ export default class SearchBar extends Component<IProps, IState> {
     if (!this.valueLocal) {
       this.valueLocal = ' ';
     }
-    console.log(this.valueLocal);
     this.state = {
       value: this.valueLocal,
     };
@@ -30,16 +29,18 @@ export default class SearchBar extends Component<IProps, IState> {
       event.preventDefault();
     }
   };
-  componentWillUnmount() {
-    console.log(this.state.value);
+  onSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
     localStorage.setItem('inputValue', this.state.value);
-  }
+    this.props.onSearch(this.state.value);
+  };
+
   render() {
     return (
       <div className="search-bar-section">
         <div className="container centralize search-bar__wrapper">
-          <p className="search-bar__title">Go ahead, hover over search</p>
-          <form className="search-bar">
+          <p className="search-bar__title">Search by characters' name</p>
+          <form className="search-bar" onSubmit={this.onSubmit}>
             <input
               type="text"
               className="search-bar__input"
@@ -48,6 +49,9 @@ export default class SearchBar extends Component<IProps, IState> {
               onKeyDown={this.onKeyDown}
               value={this.state.value}
             />
+            <button type="submit" className="search-bar__btn">
+              Search
+            </button>
           </form>
         </div>
       </div>
