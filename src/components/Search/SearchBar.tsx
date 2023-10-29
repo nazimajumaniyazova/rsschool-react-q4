@@ -9,26 +9,25 @@ interface IState {
   value: string;
 }
 export default class SearchBar extends Component<IProps, IState> {
-  valueLocal: string | null;
   constructor(props: IProps) {
     super(props);
-    this.valueLocal = localStorage.getItem('inputValue');
-    if (!this.valueLocal) {
-      this.valueLocal = ' ';
-    }
     this.state = {
-      value: this.valueLocal,
+      value: localStorage.getItem('inputValue') || '',
     };
   }
+
   onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     this.setState({ value: event.target.value });
   };
+
   onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
+      this.props.onSearch(this.state.value);
     }
   };
+
   onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     localStorage.setItem('inputValue', this.state.value);
