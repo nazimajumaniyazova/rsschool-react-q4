@@ -25,6 +25,7 @@ export default class SearchBar extends Component<IProps, IState> {
     if (event.key === 'Enter') {
       event.preventDefault();
       this.props.onSearch(this.state.value);
+      localStorage.setItem('inputValue', this.state.value);
     }
   };
 

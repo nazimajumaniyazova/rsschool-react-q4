@@ -1,6 +1,5 @@
-import './Card.scss';
-
 import { ICard } from '../../type/Icard';
+import './Card.scss';
 import { Component } from 'react';
 
 export default class Card extends Component<ICard> {
