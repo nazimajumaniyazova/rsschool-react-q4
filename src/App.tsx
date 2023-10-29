@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import CardList from './components/CardList/CardList';
 import SearchBar from './components/Search/SearchBar';
-import { ICard } from './type/Icard';
+import { ICard } from './type/ICard';
+import ThrowErrorBtn from './components/ThrowErrorBtn/ThrowErrorBtn';
 
 interface IProps {
   smth?: string;
@@ -40,6 +41,7 @@ export default class App extends Component<IProps, IState> {
         isLoading: false,
         err: data.error,
       });
+      throw new Error('adasdsddsfdfgfdg');
       return;
     }
 
@@ -56,6 +58,7 @@ export default class App extends Component<IProps, IState> {
   render() {
     return (
       <>
+        <ThrowErrorBtn />
         <header>
           <SearchBar onSearch={this.onSearch} />
         </header>

@@ -2,7 +2,7 @@ import './CardList.scss';
 
 import { Component } from 'react';
 import Card from '../Card/Card';
-import { ICard } from '../../type/Icard';
+import { ICard } from '../../type/ICard';
 
 interface IProps {
   cards: Array<ICard>;

@@ -1,4 +1,4 @@
-import { ICard } from '../../type/Icard';
+import { ICard } from '../../type/ICard';
 import './Card.scss';
 import { Component } from 'react';
 
