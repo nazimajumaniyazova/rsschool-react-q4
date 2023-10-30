@@ -1,7 +1,8 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 
 interface IProps {
-  children?: ReactNode;
+  fallback: ReactNode;
+  children: ReactNode;
 }
 
 interface IState {
@@ -9,22 +10,25 @@ interface IState {
 }
 
 class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
   public state: IState = {
     hasError: false,
   };
 
-  public static getDerivedStateFromError(e: Error): IState {
-    console.log(e);
+  static getDerivedStateFromError(): IState {
     return { hasError: true };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
-      return <h1>Sorry.. there was an error</h1>;
+      return this.props.fallback;
     }
 
     return this.props.children;

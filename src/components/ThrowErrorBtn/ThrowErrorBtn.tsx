@@ -6,21 +6,22 @@ interface IProps {
 }
 
 interface IState {
-  isError: boolean;
+  hasError: boolean;
 }
 
 class ThrowErrorBtn extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      isError: false,
+      hasError: false,
     };
   }
   onClick = () => {
-    this.setState({ isError: true });
-    throw Error('You caused the Error');
+    this.setState({ hasError: true });
   };
-
+  componentDidUpdate(): void {
+    if (this.state.hasError) throw new Error('You caused the Error');
+  }
   render() {
     return (
       <button className="error-btn" onClick={this.onClick}>
