@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import CardList from './components/CardList/CardList';
 import SearchBar from './components/Search/SearchBar';
 import { ICard } from './type/ICard';
@@ -34,6 +34,9 @@ const App: FC = () => {
     setErr('');
   };
 
+  useEffect(() => {
+    onSearch('');
+  }, []);
   return (
     <>
       <ThrowErrorBtn />
