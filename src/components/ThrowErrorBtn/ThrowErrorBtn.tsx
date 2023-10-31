@@ -1,34 +1,24 @@
 import './ThrowErrorBtn.scss';
-import { Component } from 'react';
+import { useState, type FC, useEffect } from 'react';
 
-interface IProps {
-  smth?: string;
-}
+const ThrowErrorBtn: FC = () => {
+  const [hasError, setHasError] = useState<boolean>(false);
 
-interface IState {
-  hasError: boolean;
-}
-
-class ThrowErrorBtn extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      hasError: false,
-    };
-  }
-  onClick = () => {
-    this.setState({ hasError: true });
+  const onClick = () => {
+    setHasError(true);
   };
-  componentDidUpdate(): void {
-    if (this.state.hasError) throw new Error('You caused the Error');
-  }
-  render() {
-    return (
-      <button className="error-btn" onClick={this.onClick}>
-        Click to error
-      </button>
-    );
-  }
-}
+
+  useEffect(() => {
+    if (hasError) {
+      throw new Error('You caused the Error');
+    }
+  }, [hasError]);
+
+  return (
+    <button className="error-btn" onClick={onClick}>
+      Click to error
+    </button>
+  );
+};
 
 export default ThrowErrorBtn;
