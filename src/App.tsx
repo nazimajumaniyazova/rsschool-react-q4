@@ -35,8 +35,9 @@ const App: FC = () => {
   };
 
   useEffect(() => {
-    onSearch('');
+    onSearch(localStorage.getItem('inputValue') || '');
   }, []);
+
   return (
     <>
       <ThrowErrorBtn />

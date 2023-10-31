@@ -6,7 +6,9 @@ interface IProps {
 }
 
 const SearchBar: FC<IProps> = ({ onSearch }) => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(
+    localStorage.getItem('inputValue') || ''
+  );
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
