@@ -1,9 +1,11 @@
+import './Home.scss';
+
 import { FC, useEffect, useState } from 'react';
 import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/Search/SearchBar';
 import { ICard } from '../../type/ICard';
 import ThrowErrorBtn from '../../components/ThrowErrorBtn/ThrowErrorBtn';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
@@ -56,7 +58,6 @@ const Home: FC = () => {
     const res: Response = await fetch(url);
 
     const data = await res.json();
-    console.log(data);
     if (res.status !== 200) {
       setIsLoading(false);
       setCards([]);
@@ -78,7 +79,16 @@ const Home: FC = () => {
       <main>
         {err && <p className="loading">{err}</p>}
         {isLoading && <p className="loading">Loading...</p>}
-        {cards && <CardList cards={cards} />}
+        <div className="main">
+          <div className="main__list">
+            {cards && <CardList cards={cards} />}
+          </div>
+
+          <div className="main__detail">
+            <Outlet />
+          </div>
+        </div>
+
         <div className="pagination-wrap">
           <Pagination
             totalPages={totalPages}

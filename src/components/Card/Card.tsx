@@ -2,10 +2,19 @@ import './Card.scss';
 
 import { ICard } from '../../type/ICard';
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Card: FC<ICard> = (card) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate({
+      pathname: `detail=${card.id}`,
+      search: ``,
+    });
+  };
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
       <div className="card-img">
         <img src={card.image} alt={card.name} className="card-img__image" />
       </div>
