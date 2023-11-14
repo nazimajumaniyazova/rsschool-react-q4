@@ -1,19 +1,26 @@
 import './Home.scss';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+
 import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/Search/SearchBar';
-import { ICard } from '../../type/ICard';
 import ThrowErrorBtn from '../../components/ThrowErrorBtn/ThrowErrorBtn';
-import { useNavigate, Outlet } from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
+import {
+  cardListContext,
+  cardListContextType,
+} from '../../context/cardListContext';
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 const Home: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
-  const [cards, setCards] = useState<Array<ICard>>([]);
+
+  const { cards, setCards } = useContext(
+    cardListContext
+  ) as cardListContextType;
 
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);

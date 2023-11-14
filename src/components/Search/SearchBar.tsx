@@ -1,5 +1,6 @@
-import { type FC, useContext } from 'react';
 import './SearchBar.scss';
+
+import { type FC, useContext } from 'react';
 import { SearchContextType, searchContext } from '../../context/searchContext';
 
 interface IProps {
@@ -10,10 +11,6 @@ const SearchBar: FC<IProps> = ({ onSearch }) => {
   const { searchValue, setSearchValue } = useContext(
     searchContext
   ) as SearchContextType;
-
-  // const [value, setValue] = useState<string>(
-  //   localStorage.getItem('inputValue') || ''
-  // );
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
