@@ -1,32 +1,37 @@
-import { useState, type FC } from 'react';
+import { type FC, useContext } from 'react';
 import './SearchBar.scss';
+import { SearchContextType, searchContext } from '../../context/searchContext';
 
 interface IProps {
   onSearch: (name: string) => void;
 }
 
 const SearchBar: FC<IProps> = ({ onSearch }) => {
-  const [value, setValue] = useState<string>(
-    localStorage.getItem('inputValue') || ''
-  );
+  const { searchValue, setSearchValue } = useContext(
+    searchContext
+  ) as SearchContextType;
+
+  // const [value, setValue] = useState<string>(
+  //   localStorage.getItem('inputValue') || ''
+  // );
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    setValue(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      onSearch(value);
-      localStorage.setItem('inputValue', value);
+      onSearch(searchValue);
+      localStorage.setItem('inputValue', searchValue);
     }
   };
 
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    localStorage.setItem('inputValue', value);
-    onSearch(value);
+    localStorage.setItem('inputValue', searchValue);
+    onSearch(searchValue);
   };
 
   return (
@@ -40,7 +45,7 @@ const SearchBar: FC<IProps> = ({ onSearch }) => {
             placeholder="Search"
             onInput={onInputChange}
             onKeyDown={onKeyDown}
-            value={value}
+            value={searchValue}
           />
           <button type="submit" className="search-bar__btn">
             Search
