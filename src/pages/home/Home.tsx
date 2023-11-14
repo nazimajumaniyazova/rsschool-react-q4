@@ -8,7 +8,7 @@ import ThrowErrorBtn from '../../components/ThrowErrorBtn/ThrowErrorBtn';
 import { useNavigate, Outlet } from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
 
-const BASE_URL = 'https://rickandmortyapi.com/api/character';
+export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 const Home: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +17,8 @@ const Home: FC = () => {
 
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
+
+  const [urlValue, setUrlValue] = useState('');
 
   const onSearch = async (name: string) => {
     let url = '';
@@ -38,12 +40,14 @@ const Home: FC = () => {
         search: ``,
       });
       fetchData(BASE_URL + `?page=${currentPage}`);
+      setUrlValue('');
       return;
     }
     navigate({
       pathname: '/',
       search: `?page=${currentPage}`,
     });
+    setUrlValue(`?page=${currentPage}`);
     fetchData(BASE_URL + `?page=${currentPage}`);
   };
 
@@ -81,7 +85,7 @@ const Home: FC = () => {
         {isLoading && <p className="loading">Loading...</p>}
         <div className="main">
           <div className="main__list">
-            {cards && <CardList cards={cards} />}
+            {cards && <CardList cards={cards} urlValue={urlValue} />}
           </div>
 
           <div className="main__detail">

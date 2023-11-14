@@ -4,15 +4,22 @@ import { ICard } from '../../type/ICard';
 import { type FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Card: FC<ICard> = (card) => {
+type CardType = {
+  card: ICard;
+  urlValue: string;
+};
+const Card: FC<CardType> = ({ card, urlValue }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate({
-      pathname: `detail=${card.id}`,
-      search: ``,
-    });
+    // navigate({
+    //   pathname: `detail=${card.id}`,
+    //   search: ``,
+    //   state:
+    // });
+    navigate(`detail=${card.id}`, { state: { path: urlValue } });
   };
+
   return (
     <div className="card" onClick={handleClick}>
       <div className="card-img">
