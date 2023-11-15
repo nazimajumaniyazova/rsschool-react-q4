@@ -1,0 +1,14 @@
+.cards-section {
+  padding: 50px 0;
+}
+.cards-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cards-container li {
+  max-width: 200px;
+  align-self: stretch;
+}
