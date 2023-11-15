@@ -53,7 +53,7 @@ const Pagination: FC<PaginationType> = ({
 
   const handleNextbtn = () => {
     setcurrentPage(currentPage + 1);
-
+    console.log(window.location.search);
     if (currentPage + 1 > maxPageNumberLimit) {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
@@ -97,7 +97,7 @@ const Pagination: FC<PaginationType> = ({
           onClick={handlePrevbtn}
           disabled={currentPage == pages[0] ? true : false}
         >
-          &laquo;
+          Previous
         </button>
       </li>
       {pageDecrementBtn}
@@ -109,7 +109,7 @@ const Pagination: FC<PaginationType> = ({
           onClick={handleNextbtn}
           disabled={currentPage == pages[pages.length - 1] ? true : false}
         >
-          &raquo;
+          Next
         </button>
       </li>
     </ul>
