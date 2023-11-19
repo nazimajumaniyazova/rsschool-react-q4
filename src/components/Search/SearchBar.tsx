@@ -1,16 +1,18 @@
 import './SearchBar.scss';
 
-import { type FC, useContext } from 'react';
-import { SearchContextType, searchContext } from '../../context/searchContext';
+import { type FC, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { save } from '../../store/searchSlice';
 
 interface IProps {
   onSearch: (name: string) => void;
 }
 
 const SearchBar: FC<IProps> = ({ onSearch }) => {
-  const { searchValue, setSearchValue } = useContext(
-    searchContext
-  ) as SearchContextType;
+  const dispatch = useAppDispatch();
+  const { inputValue } = useAppSelector((state) => state.searchReducer);
+
+  const [searchValue, setSearchValue] = useState(inputValue);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -21,7 +23,7 @@ const SearchBar: FC<IProps> = ({ onSearch }) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       onSearch(searchValue);
-      localStorage.setItem('inputValue', searchValue);
+      dispatch(save(searchValue));
     }
   };
 

@@ -1,21 +1,20 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import SearchBar from './SearchBar';
-import { searchContext } from '../../context/searchContext';
+import { Provider } from 'react-redux';
+import searchReducer from '../../store/searchSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 describe('SearchBar', () => {
   test('should save the entered search term to local storage', async () => {
-    const mockSearchContextValue = {
-      searchValue: '',
-      setSearchValue: jest.fn(),
-    };
+    const store = configureStore({
+      reducer: {
+        searchReducer,
+      },
+    });
     const onSearch = jest.fn();
     render(<SearchBar onSearch={onSearch} />, {
-      wrapper: ({ children }) => (
-        <searchContext.Provider value={mockSearchContextValue}>
-          {children}
-        </searchContext.Provider>
-      ),
+      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
     });
 
     const inputField = await waitFor(
