@@ -11,6 +11,26 @@ export interface CardList {
   results: Array<ICard>;
 }
 
+export interface CardDetail {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  episode: Array<string>;
+  image: string;
+  url: string;
+  created: string;
+};
 export const api = createApi({
   reducerPath: 'cardList',
   baseQuery: fetchBaseQuery({
@@ -26,9 +46,14 @@ export const api = createApi({
         }
       }),
     }),
+    cardDetail: build.query<CardDetail, { id: string | undefined }>({
+      query: ({ id }) => ({
+        url: `character/${id}`,
+      }),
+    }),
   }),
 
 });
 
 
-export const { useCardListQuery } = api;
+export const { useCardListQuery, useCardDetailQuery } = api;
