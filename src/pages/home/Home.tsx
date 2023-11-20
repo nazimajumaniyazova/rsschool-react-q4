@@ -8,13 +8,16 @@ import SearchBar from '../../components/Search/SearchBar';
 import ThrowErrorBtn from '../../components/ThrowErrorBtn/ThrowErrorBtn';
 import Pagination from '../../components/Pagination/Pagination';
 import { useCardListQuery } from '../../store/cardListSlice';
+import { useAppSelector } from '../../store/hooks';
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 const Home: FC = () => {
   const [currentPage, setcurrentPage] = useState(1);
+  const { inputValue } = useAppSelector((store) => store.searchReducer);
   const { data, isLoading, isError } = useCardListQuery({
     pageNumber: currentPage,
+    searchValue: inputValue,
   });
 
   const [urlValue, setUrlValue] = useState('');

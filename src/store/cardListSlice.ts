@@ -17,11 +17,12 @@ export const api = createApi({
     baseUrl: 'https://rickandmortyapi.com/api/',
   }),
   endpoints: (build) => ({
-    cardList: build.query<CardList, { pageNumber: number }>({
-      query: ({ pageNumber }) => ({
+    cardList: build.query<CardList, { pageNumber: number, searchValue: string }>({
+      query: ({ pageNumber, searchValue }) => ({
         url: 'character',
         params: {
-          page: pageNumber
+          page: pageNumber,
+          name: searchValue
         }
       }),
     }),
