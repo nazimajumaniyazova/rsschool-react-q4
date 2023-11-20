@@ -29,8 +29,8 @@ const SearchBar: FC<IProps> = ({ onSearch }) => {
 
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    localStorage.setItem('inputValue', searchValue);
     onSearch(searchValue);
+    dispatch(save(searchValue));
   };
 
   return (

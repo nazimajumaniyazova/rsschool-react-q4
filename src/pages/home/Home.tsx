@@ -25,7 +25,7 @@ const Home: FC = () => {
   const navigate = useNavigate();
 
   const handlePaginationClick = (currentPage: number) => {
-    if (currentPage === 1) {
+    if (currentPage === 1 && inputValue === '') {
       navigate({
         pathname: '/',
         search: ``,
@@ -35,9 +35,9 @@ const Home: FC = () => {
     }
     navigate({
       pathname: '/',
-      search: `?page=${currentPage}`,
+      search: `?name=${inputValue}&page=${currentPage}`,
     });
-    setUrlValue(`?page=${currentPage}`);
+    setUrlValue(`?name=${inputValue}&page=${currentPage}`);
   };
 
   if (isError) {
