@@ -2,7 +2,7 @@ import { useState, FC, Dispatch, SetStateAction, useEffect } from 'react';
 import './Pagination.scss';
 
 type PaginationType = {
-  totalPages: number;
+  totalPages?: number;
   currentPage: number;
   setcurrentPage: Dispatch<SetStateAction<number>>;
   handlePaginationClick: (currentPage: number) => void;
@@ -13,8 +13,6 @@ const Pagination: FC<PaginationType> = ({
   setcurrentPage,
   handlePaginationClick,
 }) => {
-  //  const [itemsPerPage] = useState(20);
-
   const [pageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
@@ -25,12 +23,11 @@ const Pagination: FC<PaginationType> = ({
   };
 
   const pages = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(i);
+  if (totalPages) {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
   }
-
-  //const indexOfLastItem = currentPage * itemsPerPage;
-  //  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {

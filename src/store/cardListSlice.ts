@@ -26,6 +26,8 @@ export const api = createApi({
       }),
     }),
   }),
+
 });
+
 
 export const { useCardListQuery } = api;

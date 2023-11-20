@@ -23,7 +23,11 @@ class ErrorBoundary extends Component<IProps, IState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error:', error, errorInfo);
+    console.log(
+      'Uncaught error: (It is not testin error, it is Error Boundary error)',
+      error,
+      errorInfo
+    );
   }
 
   render() {

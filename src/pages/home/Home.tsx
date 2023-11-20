@@ -1,31 +1,23 @@
 import './Home.scss';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 
 import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/Search/SearchBar';
 import ThrowErrorBtn from '../../components/ThrowErrorBtn/ThrowErrorBtn';
 import Pagination from '../../components/Pagination/Pagination';
+import { useCardListQuery } from '../../store/cardListSlice';
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 const Home: FC = () => {
-  const [totalPages] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
+  const { data, isLoading, isError } = useCardListQuery({
+    pageNumber: currentPage,
+  });
 
   const [urlValue, setUrlValue] = useState('');
-
-  const onSearch = async (name: string) => {
-    let url = '';
-    if (!name) {
-      url = BASE_URL;
-    } else {
-      url = BASE_URL + `?name=${name}`;
-    }
-
-    fetchData(url);
-  };
 
   const navigate = useNavigate();
 
@@ -45,20 +37,23 @@ const Home: FC = () => {
     setUrlValue(`?page=${currentPage}`);
   };
 
-  useEffect(() => {
-    onSearch(localStorage.getItem('inputValue') || '');
-  }, []);
+  if (isError) {
+    return <p>Smth went wrong. Pleae try again</p>;
+  }
 
   return (
     <>
       <ThrowErrorBtn />
       <header>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar onSearch={() => {}} />
       </header>
       <main>
+        {isLoading && <p className="loading">Loading...</p>}
         <div className="main">
           <div className="main__list">
-            <CardList urlValue={urlValue} />
+            {data?.results && (
+              <CardList cards={data?.results} urlValue={urlValue} />
+            )}
           </div>
 
           <div className="main__detail">
@@ -68,7 +63,7 @@ const Home: FC = () => {
 
         <div className="pagination-wrap">
           <Pagination
-            totalPages={totalPages}
+            totalPages={data?.info?.pages}
             setcurrentPage={setcurrentPage}
             currentPage={currentPage}
             handlePaginationClick={handlePaginationClick}
