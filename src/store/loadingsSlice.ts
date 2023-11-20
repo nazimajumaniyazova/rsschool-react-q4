@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 
 export interface loadingsSlice {
@@ -21,3 +22,7 @@ export const loadingsSlice = createSlice({
 
   },
 });
+
+export const { setCardListLoading, setCardDetailLoading } = loadingsSlice.actions;
+export const searchSelector = (state: RootState) => state.searchReducer;
+export default loadingsSlice.reducer;

@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
+
 export interface Search {
   inputValue: string;
   isLoading: boolean;
@@ -18,6 +19,7 @@ export const searchSlice = createSlice({
       state.inputValue = action.payload;
       localStorage.setItem('inputValue', action.payload);
     },
+
   },
 });
 

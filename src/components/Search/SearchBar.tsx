@@ -22,15 +22,15 @@ const SearchBar: FC<IProps> = ({ onSearch }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      dispatch(save(searchValue));
       onSearch(searchValue);
+      dispatch(save(searchValue));
     }
   };
 
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    dispatch(save(searchValue));
     onSearch(searchValue);
+    dispatch(save(searchValue));
   };
 
   return (

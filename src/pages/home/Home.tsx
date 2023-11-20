@@ -48,7 +48,7 @@ const Home: FC = () => {
     <>
       <ThrowErrorBtn />
       <header>
-        <SearchBar onSearch={() => handlePaginationClick(currentPage)} />
+        <SearchBar onSearch={() => {}} />
       </header>
       <main>
         {isLoading && <p className="loading">Loading...</p>}
