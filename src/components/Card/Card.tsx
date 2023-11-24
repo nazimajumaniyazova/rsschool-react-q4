@@ -10,7 +10,6 @@ type CardType = {
 };
 const Card: FC<CardType> = ({ card, urlValue }) => {
   const navigate = useNavigate();
-
   const handleClick = () => {
     // navigate({
     //   pathname: `detail=${card.id}`,
@@ -21,7 +20,7 @@ const Card: FC<CardType> = ({ card, urlValue }) => {
   };
 
   return (
-    <div className="card" onClick={handleClick}>
+    <div className="card" onClick={handleClick} data-testid="card">
       <div className="card-img">
         <img src={card.image} alt={card.name} className="card-img__image" />
       </div>

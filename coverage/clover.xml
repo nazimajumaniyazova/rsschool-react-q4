@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700492997057" clover="3.2.0">
-  <project timestamp="1700492997057" name="All files">
-    <metrics statements="152" coveredstatements="119" conditionals="28" coveredconditionals="20" methods="37" coveredmethods="21" elements="217" coveredelements="160" complexity="0" loc="152" ncloc="152" packages="9" files="12" classes="12"/>
+<coverage generated="1700664019871" clover="3.2.0">
+  <project timestamp="1700664019871" name="All files">
+    <metrics statements="152" coveredstatements="123" conditionals="28" coveredconditionals="20" methods="37" coveredmethods="23" elements="217" coveredelements="166" complexity="0" loc="152" ncloc="152" packages="9" files="12" classes="12"/>
     <package name="components.Card">
-      <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="Card.tsx" path="C:\Users\NAZIMA\rsschool-react-q4\src\components\Card\Card.tsx">
-        <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.CardList">
